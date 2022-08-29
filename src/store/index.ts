@@ -23,11 +23,16 @@ export const useMainStore = defineStore('main', {
     /** 
      * getters：类似计算属性
      * 1.推荐使用箭头函数，函数第一个参数是 state
-     * 2.函数中中可通过 this 可获取当前store实例的数据，但必须定义返回的类型(在 TypeScript 中)
+     * 2.当getters需要使用其他的getters属性时，在函数中可用this获取整个store实例，但必须写成普通函数！并且需要定义返回的类型(在 TypeScript 中)
      */
     getters: {
-        // 自动将返回类型推断为数字
+    
         doubleCount: (state) => state.count * 2,
+
+        // 使用到getters的其他属性：1.普通函数  2.在TypeScript要定义返回的类型
+        fourTimes():number {
+            return this.doubleCount*2
+        }
     },
 
 
@@ -36,6 +41,7 @@ export const useMainStore = defineStore('main', {
      * 方法中可通过 this 可获取当前store实例的数据
      */
     actions: {
+        // 需要用到this，所以定义普通函数，不用箭头函数
         increment(params:any) {
             this.count++
             console.log(params);    // 传过来的参数

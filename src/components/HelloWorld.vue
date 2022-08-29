@@ -23,13 +23,16 @@ const addCount = () => {
 <template>
   <div>mainStore.count：{{ mainStore.count}}</div>
   <div>mainStore.doubleCount：{{ mainStore.doubleCount }}</div>
-  
+
   <hr>
 
   <div>storeToRefs--count：{{ count }}</div>
   <div>storeToRefs--doubleCount：{{ doubleCount }}</div>
   <button @click="addCount">changeCount</button>--
   <span>改变mainStore.count，因为storeToRefs的作用，解构出来的数据也是响应式的，也会一起改变</span>
+
+  <hr>
+  <div>getters使用到其他getters属性：{{  mainStore.fourTimes }}</div>
 </template>
 
 <style scoped>
