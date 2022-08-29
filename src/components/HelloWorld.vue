@@ -1,40 +1,40 @@
 <script setup lang="ts">
-// 响应式解构的方法
-import { storeToRefs } from 'pinia'
+// import { reactive } from 'vue';
+import {storeToRefs} from 'pinia';
+import { useMainStore } from '../store';
 
-// 引入Store
-import {useMainStore} from '../store'
+// mainStore
 const mainStore = useMainStore()
-mainStore.increment(100)
-console.log(mainStore.$id);
+console.log(mainStore);
+// console.log(mainStore.count);
+// console.log(mainStore.user);
 
-// 不能直接解构
-// const { count, doubleCount } = mainStore
-// 此时的count、doubleCount不是响应式的！！！
+// 响应解构
+// const { count, user } = reactive(mainStore)
+const { count } = storeToRefs(mainStore)
 
-// 解决方法 storeToRefs
-const { count, doubleCount } = storeToRefs(mainStore)
 
-const addCount = () => {
-  mainStore.count++
-}
+// countStore
+// console.log('countStore', count);
+console.log('countStore', count.value);
+// 使用
+// console.log(count.count);
+// count.increment(10)
+// console.log(count.count);
+
+console.log(count.value.count);
+count.value.increment(10)
+console.log(count.value.count);
+
+
+// userStore
+// console.log('userStore',user.value);
+// console.log(user.name,user.age);
+
 </script>
-
 <template>
-  <div>mainStore.count：{{ mainStore.count}}</div>
-  <div>mainStore.doubleCount：{{ mainStore.doubleCount }}</div>
-
-  <hr>
-
-  <div>storeToRefs--count：{{ count }}</div>
-  <div>storeToRefs--doubleCount：{{ doubleCount }}</div>
-  <button @click="addCount">changeCount</button>--
-  <span>改变mainStore.count，因为storeToRefs的作用，解构出来的数据也是响应式的，也会一起改变</span>
-
-  <hr>
-  <div>getters使用到其他getters属性：{{  mainStore.fourTimes }}</div>
+  <div>hello world</div>
 </template>
-
 <style scoped>
 
 </style>
