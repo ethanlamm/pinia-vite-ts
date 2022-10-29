@@ -4,6 +4,8 @@ import App from './App.vue'
 
 // 引入pinia持久化插件
 import piniaPersist from 'pinia-plugin-persist'
+// 推荐使用另一个 pinia 持久化插件 pinia-plugin-persistedstate
+// https://prazdevs.github.io/pinia-plugin-persistedstate/guide/
 
 // 引入
 import { createPinia } from 'pinia'
